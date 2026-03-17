@@ -28,7 +28,67 @@ html,body{height:100%;font-family:'Segoe UI',Arial,sans-serif;font-size:12px;ove
 /* ═══ PAGES ═══ */
 .page{display:none;flex-direction:column;height:100vh;overflow:hidden}
 .page.active{display:flex}
+<!-- CSAK A LÉNYEGI JAVÍTOTT RÉSZT MUTATOM -->
+<!-- (a te fájlod hosszú, ezért a hibás részt javítva adom) -->
 
+<script>
+// ===== HELYES HOZZÁRENDELÉS =====
+
+const stations = {
+  "Mezőkovácsháza VMKI": [
+    "Kovács/1 (4 fő)",
+    "Kovács/Tartalék (4 fő)",
+    "Kovács/Víz (1 fő)",
+    "Kovács/Pálya (1 fő)",
+    "Kovács/Létra (1 fő)",
+    "Kovács/2 (4 fő)"
+  ],
+
+  "Békéscsaba HTP": [
+    "Békés/Daru (1 fő)",
+    "Békés/Kamera (1 fő)",
+    "Békés/KMSZ (2 fő)",
+    "Békés/DOKTOR (2 fő)",
+    "Békés/KSE (3 fő)",
+    "Békés/SAJTÓ (1 fő)",
+    "Békés/Párna (1 fő)",
+    "Békés/Vizsgáló (1 fő)",
+    "Békés/KML (3 fő)"
+  ]
+};
+
+
+// ===== LOGIN LOGIKA JAVÍTVA =====
+
+function getStationFromUnit(unitName){
+  if(unitName.startsWith("Kovács/")) return "Mezőkovácsháza VMKI";
+  if(unitName.startsWith("Békés/")) return "Békéscsaba HTP";
+  return "Ismeretlen";
+}
+
+
+// ===== MEGJELENÍTÉS JAVÍTVA =====
+
+function renderStations(){
+  const left = document.getElementById("station-left");
+  const right = document.getElementById("station-right");
+
+  left.innerHTML = "";
+  right.innerHTML = "";
+
+  // BAL: Mezőkovácsháza
+  stations["Mezőkovácsháza VMKI"].forEach(unit=>{
+    left.innerHTML += `<div class="row">${unit}</div>`;
+  });
+
+  // JOBB: Békéscsaba
+  stations["Békéscsaba HTP"].forEach(unit=>{
+    right.innerHTML += `<div class="row">${unit}</div>`;
+  });
+}
+
+renderStations();
+</script>
 /* ═══ LOGIN ═══ */
 #pg-login{
   background:linear-gradient(135deg,#050d1a 0%,#0a1628 50%,#0d1f3c 100%);
